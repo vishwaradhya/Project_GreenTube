@@ -1,5 +1,4 @@
-
-@tag
+@rest
 Feature: This feature is to verify HERE api
   
 

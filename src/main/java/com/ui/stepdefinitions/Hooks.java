@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
+
 import com.framework.actions.BaseAbstract;
 import com.framework.actions.ScreenShotMethods;
 import com.framework.commonutils.PropertiesFile;
@@ -14,6 +16,8 @@ import cucumber.api.java.After;
 import cucumber.api.java.Before;
 
 public class Hooks extends BaseAbstract {
+
+	static Logger logger = Logger.getLogger(Hooks.class.getName());
 
 	DriverInitalization driverInitialize = new DriverInitalization();
 	protected static final Map<String, String> CONFIG_DETAILS = new HashMap<>();
@@ -29,8 +33,11 @@ public class Hooks extends BaseAbstract {
 	@Before
 	public void beforeScenario(Scenario scenario) {
 
-		driver = driverInitialize.getDriver(CONFIG_DETAILS);
-
+		if (!scenario.getSourceTagNames().contains("@rest")) {
+			driver = driverInitialize.getDriver(CONFIG_DETAILS);
+		} else {
+			logger.info("Ignore browser launch for api/rest tests");
+		}
 	}
 
 	@After
