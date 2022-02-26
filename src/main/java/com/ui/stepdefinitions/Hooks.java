@@ -1,4 +1,4 @@
-package com.framework.commonutils;
+package com.ui.stepdefinitions;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -6,6 +6,7 @@ import java.util.Map;
 
 import com.framework.actions.BaseAbstract;
 import com.framework.actions.ScreenShotMethods;
+import com.framework.commonutils.PropertiesFile;
 import com.framework.initialization.DriverInitalization;
 
 import cucumber.api.Scenario;
