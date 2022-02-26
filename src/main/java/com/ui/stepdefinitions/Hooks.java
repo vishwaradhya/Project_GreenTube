@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 
 import com.framework.actions.BaseAbstract;
 import com.framework.actions.ScreenShotMethods;
+import com.framework.commonutils.Constants;
 import com.framework.commonutils.PropertiesFile;
 import com.framework.initialization.DriverInitalization;
 
@@ -21,12 +22,11 @@ public class Hooks extends BaseAbstract {
 
 	DriverInitalization driverInitialize = new DriverInitalization();
 	protected static final Map<String, String> CONFIG_DETAILS = new HashMap<>();
-	public static final String CONFIG_PATH = "\\Confguration.properties";
 	ScreenShotMethods takeScreenShotObj = new ScreenShotMethods();
 
 	static {
 
-		CONFIG_DETAILS.put("Browser", PropertiesFile.getPropertyValue(CONFIG_PATH, "Browser"));
+		CONFIG_DETAILS.put("Browser", PropertiesFile.getPropertyValue(Constants.CONFIG_PATH, "Browser"));
 
 	}
 
