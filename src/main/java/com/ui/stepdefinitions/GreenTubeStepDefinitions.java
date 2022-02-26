@@ -8,7 +8,7 @@ import com.framework.commonutils.PropertiesFile;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import com.framework.commonutils.Constants;
+import com.framework.commonutils.UserDataPath;
 
 public class GreenTubeStepDefinitions implements CommonInteface {
 
@@ -75,7 +75,7 @@ public class GreenTubeStepDefinitions implements CommonInteface {
 	@Then("^user verifies the sucessful login$")
 	public void verifyLoginPage() {
 
-		String userName = PropertiesFile.getPropertyValue(Constants.USER_DATA_PATH, "userName");
+		String userName = PropertiesFile.getPropertyValue(UserDataPath.USER_DATA_PATH, "userName");
 
 		assertTrue("User " + userName + " login was not sucessfull",
 				userName.equalsIgnoreCase(greenTubehomePageObj.verifyLoginPage()));

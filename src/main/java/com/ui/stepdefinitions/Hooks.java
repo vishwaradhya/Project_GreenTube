@@ -8,8 +8,8 @@ import org.apache.log4j.Logger;
 
 import com.framework.actions.BaseAbstract;
 import com.framework.actions.ScreenShotMethods;
-import com.framework.commonutils.Constants;
 import com.framework.commonutils.PropertiesFile;
+import com.framework.initialization.ConfigurationPath;
 import com.framework.initialization.DriverInitalization;
 
 import cucumber.api.Scenario;
@@ -26,7 +26,7 @@ public class Hooks extends BaseAbstract {
 
 	static {
 
-		CONFIG_DETAILS.put("Browser", PropertiesFile.getPropertyValue(Constants.CONFIG_PATH, "Browser"));
+		CONFIG_DETAILS.put("Browser", PropertiesFile.getPropertyValue(ConfigurationPath.CONFIG_PATH, "Browser"));
 
 	}
 

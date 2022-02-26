@@ -18,13 +18,13 @@ public class DriverInitalization {
 	static Logger log = Logger.getLogger(DriverInitalization.class.getName());
 
 	public static final long DEFAULT_WAIT = 20;
-	
+
 	protected static WebDriver driver;
 
 	private static final String OS = System.getProperty("os.name");
 
 	protected static String currentDir = System.getProperty("user.dir");
-	
+
 	private static final String BROWSER = "Browser";
 
 	public static WebDriver getLatestDriver() {
@@ -40,31 +40,27 @@ public class DriverInitalization {
 		log.info("OS is " + OS);
 		if (OS.contains("Windows")) {
 
-			
-			log.info("Windows >>> " + driverDetails.get(BROWSER));
-
 			switch (driverDetails.get(BROWSER)) {
 
 			case "Firefox":
-				log.info("Launching Firefox !!!!");
+				log.info("Launching " + driverDetails.get(BROWSER) + " on Windows !!!!");
 				System.setProperty("webdriver.gecko.driver",
-						currentDir + "\\src\\main\\resources\\Windows\\geckodriver.exe");
+						currentDir + ConfigurationPath.WINDOWS_DRIVER_PATH + "\\geckodriver.exe");
 				FirefoxOptions options = new FirefoxOptions();
 				DesiredCapabilities capabilities = null;
 				capabilities = DesiredCapabilities.firefox();
 				capabilities.setCapability(FirefoxOptions.FIREFOX_OPTIONS, options);
 				driver = new FirefoxDriver(capabilities);
-
 				break;
 
 			case "Chrome":
-				log.info("Launching Chrome");
+				log.info("Launching " + driverDetails.get(BROWSER) + " on Windows !!!!");
 				System.setProperty("webdriver.chrome.driver",
-						currentDir + "\\src\\main\\resources\\Windows\\chromedriver.exe");
+						currentDir + ConfigurationPath.WINDOWS_DRIVER_PATH + "\\chromedriver.exe");
 				driver = new ChromeDriver();
 				break;
 			default:
-				log.info("In Default.. BROWSER Not Supported ");
+				log.info("BROWSER Not Supported ");
 				break;
 			}
 
@@ -73,8 +69,9 @@ public class DriverInitalization {
 			switch (driverDetails.get(BROWSER)) {
 
 			case "Firefox":
-				log.info("Launching Firefox !!!");
-				System.setProperty("webdriver.gecko.driver", currentDir + "\\src\\main\\resources\\geckodriver.exe");
+				log.info("Launching " + driverDetails.get(BROWSER) + " on Linux !!!!");
+				System.setProperty("webdriver.gecko.driver",
+						currentDir + ConfigurationPath.LINUX_DRIVER_PATH + "\\geckodriver.exe");
 				FirefoxOptions options = new FirefoxOptions();
 				DesiredCapabilities capabilities = null;
 				capabilities = DesiredCapabilities.firefox();
@@ -83,12 +80,13 @@ public class DriverInitalization {
 				break;
 
 			case "Chrome":
-				log.info("Launching Chrome");
-				System.setProperty("webdriver.chrome.driver", currentDir + "\\src\\main\\resources\\chromedriver.exe");
+				log.info("Launching "+driverDetails.get(BROWSER)+" on Linux !!!!");
+				System.setProperty("webdriver.chrome.driver",
+						currentDir + ConfigurationPath.LINUX_DRIVER_PATH + "\\chromedriver.exe");
 				driver = new ChromeDriver();
 				break;
 			default:
-				log.info("In Default.. BROWSER Not Supported ");
+				log.info("BROWSER Not Supported ");
 				break;
 			}
 
@@ -104,10 +102,10 @@ public class DriverInitalization {
 		if (driver != null) {
 			try {
 				driver.close();
-				driver.quit(); 
-			} catch (Exception e) { 
+				driver.quit();
+			} catch (Exception e) {
 				e.printStackTrace();
-			} 
+			}
 			driver = null;
 		}
 	}
